@@ -34,26 +34,6 @@ import re
 
 class AtomicCountersOnGoing(object):
     """
-    This class defines on-going atomic counters, a.k.a. TEP-to-TEP atomic
-    counters.  These count only bytes and packets on a per "path" or "trail"
-    basis.  The "path" is defined as the counts from one TEP to another.
-    The "trail" is a more fine grained view of the path split out by the
-    port of the node that faces the spines.
-
-    Depending upon the network size (number of leaf switches), the "trail"
-    stats may or may not be gathered.
-
-    counters= {<counterFamily>:{<granularity>:{<epoch>:{<counter>:value}}}}
-
-    Counters are gathered and summed up in time intervals or
-    granularities. For each granularity there are a set of time
-    periods identified by the <epoch> field.  The current stats are
-    stored in epoch 0.  These stats are zeroed at the beginning of the
-    time interval and are updated at a smaller time interval depending
-    on the granularity.
-
-    Historical statistics have epochs that are greater than 0.  The
-    number of historical stats to keep is determined by the monitoring
     policy and may be specifc to a particular counter family.
 
     The counter families are as follows: 'TxRx', and 'DropExcess'. The
